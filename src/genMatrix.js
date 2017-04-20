@@ -1,6 +1,5 @@
-import { QrCode } from 'javascript-qrcode';
+import QR from './libs/qr-image';
 
-export default (value) => {
-  const qrcode = new QrCode(value);
-  return qrcode.getData();
+export default (value, options) => {
+  return QR.matrix(value, options.ecLevel, options.version);
 };

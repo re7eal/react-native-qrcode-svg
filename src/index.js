@@ -12,6 +12,10 @@ export default class QRCode extends PureComponent {
   static propTypes = {
     /* what the qr code stands for */
     value: PropTypes.string,
+    /* prefered qr code EC level */
+    ecLevel: PropTypes.string,
+    /* prefered qr code version */
+    version: PropTypes.number,
     /* the whole component size */
     size: PropTypes.number,
     /* the color of the cell */
@@ -50,8 +54,8 @@ export default class QRCode extends PureComponent {
   }
   /* calculate the size of the cell and draw the path */
   setMatrix(props) {
-    const { value, size } = props;
-    this._matrix = genMatrix(value);
+    const { value, ecLevel, version, size } = props;
+    this._matrix = genMatrix(value, { ecLevel: ecLevel, version: version });
     this._cellSize = size / (this._matrix.length + 2);
     this._path = this.transformMatrixIntoPath();
   }
